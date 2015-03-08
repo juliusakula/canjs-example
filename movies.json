@@ -1,0 +1,32 @@
+[
+  { "id": 1,  "title": "Birdman", "img": "birdman", "genres": [
+    "comedy", "drama"
+  ]},
+  { "id": 2,  "title": "Kingsman", "img": "kingsman", "genres": [
+    "action", "adventure", "comedy"
+  ]},
+  { "id": 3,  "title": "Whiplash", "img": "whiplash", "genres": [
+    "drama", "music"
+  ]},
+  { "id": 4,  "title": "The Theory of Everything", "img": "the_theory_of_everything", "genres": [
+    "biography", "drama", "romance"
+  ]},
+  { "id": 5,  "title": "American Sniper", "img": "american_sniper", "genres": [
+    "action", "biography", "drama"
+  ]},
+  { "id": 6,  "title": "Boyhood", "img": "boyhood", "genres": [
+    "drama"
+  ]},
+  { "id": 7,  "title": "The Grand Budapest Hotel", "img": "the_grand_budapest_hotel", "genres": [
+    "adventure", "comedy", "drama"
+  ]},
+  { "id": 8,  "title": "The Imitation Game", "img": "the_imitation_game", "genres": [
+    "biography", "drama", "thriller"
+  ]},
+  { "id": 9,  "title": "Big Hero 6", "img": "big_hero_6", "genres": [
+    "animation", "action", "adventure"
+  ]},
+  { "id": 10, "title": "Gone Girl", "img": "gone_girl", "genres": [
+    "drama", "mystery", "thriller"
+  ]}
+]

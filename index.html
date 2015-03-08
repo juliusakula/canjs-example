@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Filter movies!</title>
+
+    <link rel="stylesheet" href="css/site.css">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Popular Movies of 2014</h1>
+      <div>
+        Search for a title or a #genre.
+        Try <strong>birdman</strong> or <strong>#comedy</strong>.
+      </div>
+      <div id="app"></div>
+    </div>
+
+    <script type="text/mustache" id="movies-template">
+<movies></movies>
+    </script>
+
+    <script type="text/mustache" id="movies">
+<input type="text" autofocus can-input="search"/>
+<div class="movies">
+  {{#movies}}
+    <div class="movie">
+      <div class="poster"><img src="img/{{img}}.jpg" alt="{{title}}"></div>
+      <div class="info">
+        <span class="title">{{title}}</span>
+      </div>
+    </div>
+  {{/movies}}
+  <div class="clearfix"></div>
+</div>
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="//canjs.com/release/latest/can.jquery.js"></script>
+
+    <script type="text/javascript">
+$(function() {
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  var Movie = can.Model.extend({
+    findAll: 'GET /movies.json'
+  }, {});
+
+  var movies   = Movie.findAll();
+  var filtered = new can.List(movies);
+
+  can.Component.extend({
+    tag: 'movies',
+    template: can.view('movies'),
+    scope: {
+      movies: filtered,
+      search: function(attributes, element) {
+        var search = escapeRegExp(element.val().toLowerCase());
+
+        this.movies.replace(movies);
+
+        if (/^#.*$/.test(search)) {
+          filtered = this.movies.filter(function(item) {
+            var genres = item.genres.attr().join(' ');
+            var re     = new RegExp('\\b' + search.substring(1));
+
+            return re.test(genres);
+          });
+        } else {
+          filtered = this.movies.filter(function(item) {
+            var re = new RegExp(search);
+            return re.test(item.title.toLowerCase());
+          });
+        }
+
+        this.movies.replace(filtered);
+      }
+    }
+  });
+
+  $('#app').html(can.view('movies-template', {}));
+});
+    </script>
+  </body>
+</html>
