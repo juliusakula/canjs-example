@@ -1,3 +1,6 @@
+var $   = require('jquery');
+var can = require('can');
+
 $(function() {
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
