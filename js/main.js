@@ -1,14 +1,11 @@
-var $   = require('jquery');
-var can = require('can');
+var $     = require('jquery');
+var can   = require('can');
+var Movie = require('./models/movie');
 
 $(function() {
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
-
-  var Movie = can.Model.extend({
-    findAll: 'GET /movies.json'
-  }, {});
 
   var movies   = Movie.findAll();
   var filtered = new can.List(movies);
