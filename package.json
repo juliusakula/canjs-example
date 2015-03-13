@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "uglify-js": "^2.4.17"
+  },
+  "scripts": {
+    "js": "cat js/lib/jquery.js js/lib/can.jquery.js js/main.js > js/app.js",
+    "postjs": "uglifyjs js/app.js -o js/app.min.js --source-map js/app.min.js.map"
+  }
+}
